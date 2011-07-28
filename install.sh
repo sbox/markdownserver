@@ -22,9 +22,8 @@ if [ $p ]; then
     elif [ $v = "3" ]; then
         echo Python version is 3.*
         echo Converting code...
-
-        2to3 tmp/simpleserver
-    
+        
+        2to3 -w tmp/simpleserver
     fi;
     
     echo Copying server wrapper...
