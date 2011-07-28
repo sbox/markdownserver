@@ -1,5 +1,22 @@
 # Markdown Server
 
-## Directory Structure
-utils - tools used by the installer for configuration
-components - components of the Markdown Server
+## Installation Instructions
+As root, run the script install.sh:
+sudo ./install.sh
+
+
+## Usage Instructions
+1. Navigate to a directory containing markdown files.
+2. Run the command \"startmdserver\".
+3. In your web browser, visit localhost:8080.
+
+
+## Files
+README      - this readme file
+install.sh  - configuration and installation script
+version.py  - python script to check python version
+components  - directory containing files that make up the application
+components/simpleserver.py  - a really simple python web server customised to work for this application
+components/startmdserver    - a bash wrapper for simpleserver.py that creates the site structure
+                              before starting the server
+
