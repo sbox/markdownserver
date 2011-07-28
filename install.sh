@@ -3,7 +3,19 @@
 echo Checking for python...
 
 p=$(which python);
-m=$(which markdown_py);
+m1=$(which markdown);
+m2=$(which markdown_py);
+
+if [ $m1 ]; then
+    md=markdown
+    m=1
+elif [ $m2 ]; then
+    md=markdown_py
+    m=1
+else
+    m=0
+fi
+
 
 
 if [[ $p && $m ]]; then
@@ -27,9 +39,11 @@ if [[ $p && $m ]]; then
         2to3 -w tmp/simpleserver
     fi;
     
-    echo Copying server wrapper...
-    cp components/startmdserver tmp
-    
+    echo Copying server wrapper code...
+    echo \#!/bin/bash > tmp/startmdserver
+    echo md=$md >> tmp/startmdserver
+    cat components/startmdserver.sh >> tmp/startmdserver
+
     echo Setting permissions...
     chmod +x tmp/*
 
@@ -53,7 +67,7 @@ else
     fi;
 
     if [ ! $m ]; then
-        echo "Error: python-markdown is not installed. Please install python-markdown.";
+        echo "Error: python-markdown is not installed. Please install python-markdown or markdown (perl implementation).";
     fi;
 
 fi;
