@@ -1,9 +1,12 @@
-#!/usr/bin/python
+
 
 import os
+import sys
 import BaseHTTPServer
 import shutil
 from optparse import OptionParser
+
+home = sys.argv[1]
 
 class SimpleServer(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_GET(self):
@@ -12,9 +15,9 @@ class SimpleServer(BaseHTTPServer.BaseHTTPRequestHandler):
        
         if self.path != "/favicon.ico":
             if self.path == "/":
-                pagename = ".server/index.html"
+                pagename =  home + "/.mdserver/index.html"
             else:
-                pagename = ".server/" + str(self.path) + ".html"
+                pagename =  home + "/.mdserver/" + str(self.path) + ".html"
             
             try:
 
@@ -25,7 +28,7 @@ class SimpleServer(BaseHTTPServer.BaseHTTPRequestHandler):
             
             except:
 
-                self.wfile.write("404")
+                self.wfile.write("404 - The file "+pagename+" was not found.")
                 print "File not found"
 
 

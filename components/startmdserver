@@ -1,35 +1,37 @@
 #!/bin/sh
 
-if [ -e .server ]; then
-    rm -r .server;
+if [ -e ~/.mdserver ]; then
+    rm -r ~/.mdserver;
 fi;
 
-mkdir .server;
+mkdir ~/.mdserver
 
 echo "
 <html>
 <head>
 <title>
+Markdown Server
 </title>
 </head>
 <body>
-" > .server/index.html
+" > ~/.mdserver/index.html
 
 
 for f in $(ls | egrep '\.(mdown|markdown|md)$'); do
     
     name=$(echo $f | cat | sed 's/\(.*\)\..*$/\1/');
     
-    echo "<html><head><title>$name</title></head><body><a href='/'>Back</a>" > .server/$name.html;
+    echo "<html><head><title>$name</title></head><body><a href='/'>Back</a>" > ~/.mdserver/$name.html;
     
-    markdown $f >> .server/$name.html;
+    markdown $f >> ~/.mdserver/$name.html;
 
-    echo "</body></html>" >>  .server/$name.html;
+    echo "</body></html>" >>  ~/.mdserver/$name.html;
 
-    echo "<a href='$name'>$name</a><br />" >> .server/index.html;
+    echo "<a href='$name'>$name</a><br />" >> ~/.mdserver/index.html;
 
 done
 
-echo "</body></html>" >> .server/index.html;
+echo "</body></html>" >> ~/.mdserver/index.html;
 
-~/bin/simpleserver.py
+
+simpleserver $HOME
