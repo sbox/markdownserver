@@ -33,10 +33,12 @@ if [[ $p && $m ]]; then
     if [ $v = "2" ]; then
         echo Python version is 2.*
     elif [ $v = "3" ]; then
-        echo Python version is 3.*
-        echo Converting code...
+        echo Incompatible version of python. Python must be of version 2.*.
+        exit
+        #echo Python version is 3.*
+        #echo Converting code...
         
-        2to3 -w tmp/simpleserver
+        #2to3 -w tmp/simpleserver
     fi;
     
     echo Copying server wrapper code...
