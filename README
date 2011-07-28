@@ -1,8 +1,8 @@
 # Markdown Server
 
 ## Dependencies
-Python >= 2
-python-markdown
+Python2.*
+python-markdown OR markdown (perl implementation)
 
 ## Installation Instructions
 As root, run the script install.sh:
