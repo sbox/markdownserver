@@ -23,7 +23,7 @@ for f in $(ls | egrep '\.(mdown|markdown|md)$'); do
     
     echo "<html><head><title>$name</title></head><body><a href='/'>Back</a>" > ~/.mdserver/$name.html;
     
-    markdown $f >> ~/.mdserver/$name.html;
+    markdown_py $f >> ~/.mdserver/$name.html;
 
     echo "</body></html>" >>  ~/.mdserver/$name.html;
 
