@@ -6,7 +6,7 @@ p=$(which python);
 m=$(which markdown_py);
 
 
-if [ $p -a $m ]; then
+if [[ $p && $m ]]; then
     echo Python installation found. Checking version...
     v=$(./version.py | head -n1 | cut -d'.' -f1)
     
