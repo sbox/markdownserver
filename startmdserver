@@ -1,0 +1,35 @@
+#!/bin/sh
+
+if [ -e .server ]; then
+    rm -r .server;
+fi;
+
+mkdir .server;
+
+echo "
+<html>
+<head>
+<title>
+</title>
+</head>
+<body>
+" > .server/index.html
+
+
+for f in $(ls | egrep '\.(mdown|markdown|md)$'); do
+    
+    name=$(echo $f | cat | sed 's/\(.*\)\..*$/\1/');
+    
+    echo "<html><head><title>$name</title></head><body><a href='/'>Back</a>" > .server/$name.html;
+    
+    markdown $f >> .server/$name.html;
+
+    echo "</body></html>" >>  .server/$name.html;
+
+    echo "<a href='$name'>$name</a><br />" >> .server/index.html;
+
+done
+
+echo "</body></html>" >> .server/index.html;
+
+~/bin/simpleserver.py
