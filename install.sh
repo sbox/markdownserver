@@ -3,9 +3,10 @@
 echo Checking for python...
 
 p=$(which python);
+m=$(which markdown_py);
 
 
-if [ $p ]; then
+if [ $p -a $m ]; then
     echo Python installation found. Checking version...
     v=$(./version.py | head -n1 | cut -d'.' -f1)
     
@@ -47,7 +48,12 @@ if [ $p ]; then
     echo
     
 else
+    if [ ! $p ]; then
+        echo "Error: Python is not installed. Please install python.";
+    fi;
 
-    echo "Error: Python is not installed. Please install python.";
+    if [ ! $m ]; then
+        echo "Error: python-markdown is not installed. Please install python-markdown.";
+    fi;
 
 fi;

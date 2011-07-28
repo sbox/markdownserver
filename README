@@ -1,5 +1,9 @@
 # Markdown Server
 
+## Dependencies
+Python >= 2
+python-markdown
+
 ## Installation Instructions
 As root, run the script install.sh:
 sudo ./install.sh
